@@ -1,4 +1,4 @@
-export const TFLEX = {
+export const DF_FLEX = {
   direction: {
     row: "flex-row",
     col: "flex-col",
@@ -19,28 +19,27 @@ export const TFLEX = {
     wrap: "flex-wrap",
     nowrap: "flex-nowrap",
   },
+} as const;
+
+export type Direction = keyof typeof DF_FLEX.direction;
+export type Justify = keyof typeof DF_FLEX.justify;
+export type Align = keyof typeof DF_FLEX.align;
+export type Wrap = keyof typeof DF_FLEX.wrap;
+
+export type DF_FLEX_OBJECT = {
+  direction?: Direction;
+  justify?: Justify;
+  align?: Align;
+  wrap?: Wrap;
 };
 
-export type FlexDirection = keyof typeof TFLEX.direction;
-export type FlexJustify = keyof typeof TFLEX.justify;
-export type FlexAlign = keyof typeof TFLEX.align;
-export type FlexWrap = keyof typeof TFLEX.wrap;
-
-export type FlexObject = {
-  direction?: FlexDirection;
-  justify?: FlexJustify;
-  align?: FlexAlign;
-  wrap?: FlexWrap;
-};
-
-export function computeFlexClasses(flex?: FlexObject) {
-  if (!flex) return null;
+export function computeFlexClasses(obj?: DF_FLEX_OBJECT): string {
+  if (!obj) return "";
   return [
-    "flex",
-    flex.direction && TFLEX.direction[flex.direction],
-    flex.justify && TFLEX.justify[flex.justify],
-    flex.align && TFLEX.align[flex.align],
-    flex.wrap && TFLEX.wrap[flex.wrap],
+    obj.direction && DF_FLEX.direction[obj.direction],
+    obj.justify && DF_FLEX.justify[obj.justify],
+    obj.align && DF_FLEX.align[obj.align],
+    obj.wrap && DF_FLEX.wrap[obj.wrap],
   ]
     .filter(Boolean)
     .join(" ");

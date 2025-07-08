@@ -3,8 +3,8 @@ import type { ElementType } from "react";
 import React from "react";
 import { BoxRootProps, boxVariants } from "./box.type";
 import { computeFlexClasses } from "../types/flex";
-import { computeHClasses } from "../types/sh";
-import { computeWClasses } from "../types/sw";
+import { computeHClasses } from "../types/height";
+import { computeWClasses } from "../types/width";
 
 export default function BoxRoot<T extends ElementType>({
   as = "div",

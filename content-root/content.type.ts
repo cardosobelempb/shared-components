@@ -6,13 +6,13 @@ import {
   DF_WIDTH_MAX,
   DF_WIDTH_MIN,
   DF_WIDTH_OBJECT,
-} from "../types/sw";
+} from "../types/width";
 import {
   DF_HEIGHT,
   DF_HEIGHT_MIN,
   DF_HEIGHT_MAX,
   DF_HEIGHT_OBJECT,
-} from "../types/sh";
+} from "../types/height";
 import { ComponentPropsWithoutRef, ElementType } from "react";
 
 export const contentVariants = cva("flex flex-col mx-auto w-full", {

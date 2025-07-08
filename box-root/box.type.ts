@@ -7,13 +7,13 @@ import {
   DF_HEIGHT_MAX,
   DF_HEIGHT_MIN,
   DF_HEIGHT_OBJECT,
-} from "../types/sh";
+} from "../types/height";
 import {
   DF_WIDTH,
   DF_WIDTH_MAX,
   DF_WIDTH_MIN,
   DF_WIDTH_OBJECT,
-} from "../types/sw";
+} from "../types/width";
 
 export const boxVariants = cva("rounded", {
   variants: {
