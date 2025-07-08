@@ -2,36 +2,23 @@ import clsx from "clsx";
 import type { ElementType } from "react";
 import React from "react";
 import { HeadingRootProps, headingVariants } from "./heading.type";
+import { computeFontClasses } from "../types/font";
 
 export default function HeadingRoot<T extends ElementType>({
   as = "h1",
   className,
   children,
-  sf,
-  align,
-  decoration,
-  overflow,
-  spacing,
-  transform,
-  weight,
-  wrap,
+  dffont,
   ...props
 }: HeadingRootProps<T>) {
-  const classes = headingVariants({
-    sf,
-    align,
-    decoration,
-    overflow,
-    spacing,
-    transform,
-    weight,
-    wrap,
-  });
+  const baseClasses = headingVariants({});
+
+  const fontClasses = computeFontClasses(dffont);
 
   return React.createElement(
     as,
     {
-      className: clsx(classes, className),
+      className: clsx(baseClasses, fontClasses, className),
       ...props,
     },
     children

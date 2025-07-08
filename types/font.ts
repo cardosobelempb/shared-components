@@ -1,4 +1,4 @@
-export const TS = {
+export const DF_SIZE = {
   "8": "text-[8px]",
   "10": "text-[10px]",
   "12": "text-xs",
@@ -16,7 +16,7 @@ export const TS = {
   "128": "text-9xl",
 };
 
-export const TWEIGHT = {
+export const DF_WEIGHT = {
   thin: "font-thin",
   extralight: "font-extralight",
   light: "font-light",
@@ -27,7 +27,7 @@ export const TWEIGHT = {
   extrabold: "font-extrabold",
   black: "font-black",
 };
-export const TSPACING = {
+export const DF_SPACING = {
   tighter: "tracking-tighter",
   tight: "tracking-tight",
   normal: "tracking-normal",
@@ -36,13 +36,13 @@ export const TSPACING = {
   widest: "tracking-widest",
 };
 
-export const TWRAP = {
+export const DF_WRAP = {
   wrap: "text-wrap",
   nowrap: "text-nowrap",
   balance: "text-balance",
   pretty: "text-pretty",
 };
-export const TALIGN = {
+export const DF_ALIGN = {
   left: "text-left",
   center: "text-center",
   right: "text-right",
@@ -50,7 +50,7 @@ export const TALIGN = {
   start: "text-start",
   end: "text-end",
 };
-export const TDECORATION = {
+export const DF_DECORATION = {
   underline: "underline",
   overline: "overline",
   through: "line-through",
@@ -64,21 +64,61 @@ export const TDECORATION = {
   dashed: "decoration-dashed",
   wavy: "decoration-wavy",
 };
-export const TTRANSFORM = {
+export const DF_TRANSFORM = {
   uppercase: "uppercase",
   lowercase: "lowercase",
   capitalize: "capitalize",
   case: "normal-case",
 };
-export const TOVERFLOW = {
+export const DF_OVERFLOW = {
   truncate: "truncate",
   ellipsis: "text-ellipsis",
   clip: "text-clip",
 };
-export type ts = Partial<keyof typeof TS>;
-export type tweight = Partial<keyof typeof TWEIGHT>;
-export type tspacing = Partial<keyof typeof TSPACING>;
-export type twrap = Partial<keyof typeof TWRAP>;
-export type tdecoration = Partial<keyof typeof TDECORATION>;
-export type ttransform = Partial<keyof typeof TTRANSFORM>;
-export type toverflow = Partial<keyof typeof TOVERFLOW>;
+
+export const DF_PROPS = {
+  align: DF_ALIGN,
+  decoration: DF_DECORATION,
+  overflow: DF_OVERFLOW,
+  size: DF_SIZE,
+  spacing: DF_SPACING,
+  transform: DF_TRANSFORM,
+  weight: DF_WEIGHT,
+  wrap: DF_WRAP,
+} as const;
+
+export type ALIGN = keyof typeof DF_PROPS.align;
+export type DECORATION = keyof typeof DF_PROPS.decoration;
+export type OVERFLOW = keyof typeof DF_PROPS.overflow;
+export type SIZE = keyof typeof DF_PROPS.size;
+export type SPACING = keyof typeof DF_PROPS.spacing;
+export type TRANSFORM = keyof typeof DF_PROPS.transform;
+export type WEIGHT = keyof typeof DF_PROPS.weight;
+export type WRAP = keyof typeof DF_PROPS.wrap;
+
+export type DF_FONT_OBJECT = {
+  align?: ALIGN;
+  decoration?: DECORATION;
+  overflow?: OVERFLOW;
+  size?: SIZE;
+  spacing?: SPACING;
+  transform?: TRANSFORM;
+  weight?: WEIGHT;
+  wrap?: WRAP;
+};
+
+export function computeFontClasses(obj?: DF_FONT_OBJECT): string {
+  if (!obj) return "";
+  return [
+    obj.align && DF_PROPS.align[obj.align],
+    obj.decoration && DF_PROPS.decoration[obj.decoration],
+    obj.overflow && DF_PROPS.overflow[obj.overflow],
+    obj.size && DF_PROPS.size[obj.size],
+    obj.spacing && DF_PROPS.spacing[obj.spacing],
+    obj.transform && DF_PROPS.transform[obj.transform],
+    obj.weight && DF_PROPS.weight[obj.weight],
+    obj.wrap && DF_PROPS.wrap[obj.wrap],
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
