@@ -2,36 +2,31 @@ import clsx from "clsx";
 import type { ElementType } from "react";
 import React from "react";
 import { ContainerRootProps, containerVariants } from "./container.type";
+import { computeFlexClasses } from "../types/flex";
+import { computeHClasses } from "../types/sh";
+import { computeWClasses } from "../types/sw";
 
 export default function ContainerRoot<T extends ElementType>({
   as = "section",
   className,
   children,
-  flex,
-  sh,
-  round,
-  sh_max,
-  sh_min,
-  sw,
-  sw_max,
-  sw_min,
+  dfflex,
+  dfwidth,
+  dfheight,
+  dfround,
   ...props
 }: ContainerRootProps<T>) {
-  const classes = containerVariants({
-    flex,
-    sh,
-    round,
-    sh_max,
-    sh_min,
-    sw,
-    sw_max,
-    sw_min,
+  const baseClasses = containerVariants({
+    dfround,
   });
+  const flexClasses = computeFlexClasses(dfflex);
+  const hClasses = computeHClasses(dfheight);
+  const wClasses = computeWClasses(dfwidth);
 
   return React.createElement(
     as,
     {
-      className: clsx(classes, className),
+      className: clsx(baseClasses, flexClasses, hClasses, wClasses, className),
       ...props,
     },
     children

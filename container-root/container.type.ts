@@ -1,28 +1,40 @@
 // styles/container.ts
 import { cva, type VariantProps } from "class-variance-authority";
-import { TFLEX } from "../types/flex";
-import { TSW, TSWMAX, TSWMIN } from "../types/sw";
-import { TSH, TSHMAX, TSHMIN } from "../types/sh";
 import { ComponentPropsWithoutRef, ElementType } from "react";
+import { DF_FLEX_OBJECT, DF_FLEX } from "../types/flex";
+import {
+  DF_HEIGHT,
+  DF_HEIGHT_MIN,
+  DF_HEIGHT_MAX,
+  DF_HEIGHT_OBJECT,
+} from "../types/sh";
+import {
+  DF_WIDTH,
+  DF_WIDTH_MAX,
+  DF_WIDTH_MIN,
+  DF_WIDTH_OBJECT,
+} from "../types/sw";
 
 export const containerVariants = cva("flex flec-col h-full", {
   variants: {
-    round: {
+    dfround: {
       true: "rounded-full",
       false: "rounded",
     },
-    flex: TFLEX,
-    sw: TSW,
-    sw_min: TSWMIN,
-    sw_max: TSWMAX,
-    sh: TSH,
-    sh_min: TSHMIN,
-    sh_max: TSHMAX,
+    flex: DF_FLEX,
+    width: {
+      width: DF_WIDTH,
+      min: DF_WIDTH_MIN,
+      max: DF_WIDTH_MAX,
+    },
+    height: {
+      height: DF_HEIGHT,
+      min: DF_HEIGHT_MIN,
+      max: DF_HEIGHT_MAX,
+    },
   },
   defaultVariants: {
-    round: false,
-    sh: "24",
-    sw: "full",
+    dfround: false,
   },
 });
 
@@ -34,4 +46,7 @@ export type ContainerRootProps<T extends ElementType> =
       as?: keyof JSX.IntrinsicElements;
       className?: string;
       children?: React.ReactNode;
+      dfheight?: DF_HEIGHT_OBJECT;
+      dfwidth?: DF_WIDTH_OBJECT;
+      dfflex?: DF_FLEX_OBJECT;
     };

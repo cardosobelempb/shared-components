@@ -8,24 +8,16 @@ export default function ContentRoot<T extends ElementType>({
   className,
   children,
   flex,
-  sh,
+  height,
+  width,
   round,
-  sh_max,
-  sh_min,
-  sw,
-  sw_max,
-  sw_min,
   ...props
 }: ContentRootProps<T>) {
   const classes = contentVariants({
     flex,
-    sh,
+    height,
+    width,
     round,
-    sh_max,
-    sh_min,
-    sw,
-    sw_max,
-    sw_min,
   });
 
   return React.createElement(

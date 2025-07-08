@@ -1,9 +1,19 @@
 // styles/box.ts
 import { cva, type VariantProps } from "class-variance-authority";
 import { ComponentPropsWithoutRef, ElementType } from "react";
-import { FlexObject, TFLEX } from "../types/flex";
-import { tsh, TSH } from "../types/sh";
-import { tsw, TSW } from "../types/sw";
+import { DF_FLEX, DF_FLEX_OBJECT } from "../types/flex";
+import {
+  DF_HEIGHT,
+  DF_HEIGHT_MAX,
+  DF_HEIGHT_MIN,
+  DF_HEIGHT_OBJECT,
+} from "../types/sh";
+import {
+  DF_WIDTH,
+  DF_WIDTH_MAX,
+  DF_WIDTH_MIN,
+  DF_WIDTH_OBJECT,
+} from "../types/sw";
 
 export const boxVariants = cva("rounded", {
   variants: {
@@ -11,13 +21,20 @@ export const boxVariants = cva("rounded", {
       true: "rounded-full",
       false: "rounded",
     },
-    sw: TSW,
-    sh: TSH,
+    flex: DF_FLEX,
+    width: {
+      width: DF_WIDTH,
+      min: DF_WIDTH_MIN,
+      max: DF_WIDTH_MAX,
+    },
+    height: {
+      height: DF_HEIGHT,
+      min: DF_HEIGHT_MIN,
+      max: DF_HEIGHT_MAX,
+    },
   },
   defaultVariants: {
     round: false,
-    sh: "24",
-    sw: "full",
   },
 });
 
@@ -29,7 +46,7 @@ export type BoxRootProps<T extends ElementType> = ComponentPropsWithoutRef<T> &
     className?: string;
     children?: React.ReactNode;
     round?: boolean;
-    sh?: tsh;
-    sw?: tsw;
-    flex?: FlexObject;
+    dfheight?: DF_HEIGHT_OBJECT;
+    dfwidth?: DF_WIDTH_OBJECT;
+    dfflex?: DF_FLEX_OBJECT;
   };
