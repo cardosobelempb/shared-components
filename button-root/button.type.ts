@@ -1,20 +1,67 @@
 // styles/button.ts
 import { cva, type VariantProps } from "class-variance-authority";
 import { ComponentPropsWithoutRef, ElementType } from "react";
-import { IconType } from "react-icons";
-import { tsh, TSH } from "../types/sh";
-import { tsw, TSW } from "../types/sw";
-import { ts, TS } from "../types/sf";
+import {
+  DF_FLEX_ALIGN,
+  DF_FLEX_DIRECTION,
+  DF_FLEX_JUSTIFY,
+  DF_FLEX_OBJECT,
+} from "../types/flex.type";
+import {
+  DF_ALIGN,
+  DF_DECORATION,
+  DF_FONT_OBJECT,
+  DF_OVERFLOW,
+  DF_SIZE,
+  DF_SPACING,
+  DF_TRANSFORM,
+  DF_WEIGHT,
+  DF_WRAP,
+} from "../types/font.type";
+import {
+  DF_HEIGHT,
+  DF_HEIGHT_MAX,
+  DF_HEIGHT_MIN,
+  DF_HEIGHT_OBJECT,
+} from "../types/height.type";
+import {
+  DF_MARGIN,
+  DF_MARGIN_OBJECT,
+  DF_MARGINB,
+  DF_MARGINE,
+  DF_MARGINL,
+  DF_MARGINR,
+  DF_MARGINS,
+  DF_MARGINT,
+  DF_MARGINX,
+  DF_MARGINY,
+} from "../types/margin.type";
+import {
+  DF_PADDING_OBJECT,
+  DF_PADDINGB,
+  DF_PADDINGE,
+  DF_PADDINGL,
+  DF_PADDINGP,
+  DF_PADDINGR,
+  DF_PADDINGS,
+  DF_PADDINGT,
+  DF_PADDINGX,
+  DF_PADDINGY,
+} from "../types/padding.type";
+import { DF_VARIANT, DF_VARIANT_OBJECT } from "../types/variant.type";
+import {
+  DF_WIDTH,
+  DF_WIDTH_MAX,
+  DF_WIDTH_MIN,
+  DF_WIDTH_OBJECT,
+} from "../types/width.type";
+import { RenderIconProps } from "../utils/render-icon.root";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center px-4 py-2 border border-transparent font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 gap-x-3",
+  "inline-flex items-center justify-center border border-transparent font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2",
   {
     variants: {
-      variant: {
-        primary: "bg-green-500 text-white hover:bg-green-400",
-        secondary: "bg-gray-200 text-gray-800 hover:bg-gray-100",
-        danger: "bg-pink-500 text-white hover:bg-pink-400",
-      },
+      variant: DF_VARIANT,
       disabled: {
         true: "opacity-50 cursor-not-allowed",
         false: "opacity-100 cursor-pointer",
@@ -27,16 +74,58 @@ export const buttonVariants = cva(
         true: "rounded-full",
         false: "rounded",
       },
-      sw: TSW,
-      sh: TSH,
-      sf: TS,
+      flex: {
+        align: DF_FLEX_ALIGN,
+        direction: DF_FLEX_DIRECTION,
+        justify: DF_FLEX_JUSTIFY,
+        wrap: DF_WRAP,
+      },
+      padding: {
+        p: DF_PADDINGP,
+        px: DF_PADDINGX,
+        py: DF_PADDINGY,
+        ps: DF_PADDINGS,
+        pe: DF_PADDINGE,
+        pt: DF_PADDINGT,
+        pr: DF_PADDINGR,
+        pb: DF_PADDINGB,
+        pl: DF_PADDINGL,
+      },
+      margin: {
+        m: DF_MARGIN,
+        mx: DF_MARGINX,
+        my: DF_MARGINY,
+        ms: DF_MARGINS,
+        me: DF_MARGINE,
+        mt: DF_MARGINT,
+        mr: DF_MARGINR,
+        mb: DF_MARGINB,
+        ml: DF_MARGINL,
+      },
+      width: {
+        width: DF_WIDTH,
+        min: DF_WIDTH_MIN,
+        max: DF_WIDTH_MAX,
+      },
+      height: {
+        height: DF_HEIGHT,
+        min: DF_HEIGHT_MIN,
+        max: DF_HEIGHT_MAX,
+      },
+      font: {
+        size: DF_SIZE,
+        weight: DF_WEIGHT,
+        spacing: DF_SPACING,
+        wrap: DF_WRAP,
+        align: DF_ALIGN,
+        decoration: DF_DECORATION,
+        transform: DF_TRANSFORM,
+        overflow: DF_OVERFLOW,
+      },
     },
     defaultVariants: {
       round: false,
-      sf: "16",
-      sh: "24",
-      sw: "full",
-      variant: "primary",
+      variant: "gray",
       full: false,
       disabled: false,
     },
@@ -54,11 +143,16 @@ export type ButtonRootProps<T extends ElementType> =
       isLoading?: boolean;
       loadingText?: string;
       iconClass?: string;
-      iconStart?: IconType;
-      iconEnd?: IconType;
       text?: string;
-      round?: boolean;
-      sf?: ts;
-      sh?: tsh;
-      sw?: tsw;
+      dfround?: boolean;
+      dfheight?: DF_HEIGHT_OBJECT;
+      dfwidth?: DF_WIDTH_OBJECT;
+      dfflex?: DF_FLEX_OBJECT;
+      dfvariant?: DF_VARIANT_OBJECT;
+      dffont?: DF_FONT_OBJECT;
+      dfpadding?: DF_PADDING_OBJECT;
+      dfmargin?: DF_MARGIN_OBJECT;
+      dficon?: RenderIconProps;
+      iconStart?: RenderIconProps;
+      iconEnd?: RenderIconProps;
     };

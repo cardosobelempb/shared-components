@@ -2,9 +2,9 @@ import clsx from "clsx";
 import type { ElementType } from "react";
 import React from "react";
 import { ContainerRootProps, containerVariants } from "./container.type";
-import { computeFlexClasses } from "../types/flex";
-import { computeHClasses } from "../types/height";
-import { computeWClasses } from "../types/width";
+import { computeFlexClasses } from "../types/flex.type";
+import { computeHClasses } from "../types/height.type";
+import { computeWClasses } from "../types/width.type";
 
 export default function ContainerRoot<T extends ElementType>({
   as = "section",
@@ -13,11 +13,11 @@ export default function ContainerRoot<T extends ElementType>({
   dfflex,
   dfwidth,
   dfheight,
-  dfround,
+  round,
   ...props
 }: ContainerRootProps<T>) {
   const baseClasses = containerVariants({
-    dfround,
+    round,
   });
   const flexClasses = computeFlexClasses(dfflex);
   const hClasses = computeHClasses(dfheight);

@@ -1,30 +1,17 @@
 // styles/content.ts
 import { cva, type VariantProps } from "class-variance-authority";
 import { ComponentPropsWithoutRef, ElementType } from "react";
-import {
-  DF_ALIGN,
-  DF_DECORATION,
-  DF_OVERFLOW,
-  DF_SIZE,
-  DF_SPACING,
-  DF_TRANSFORM,
-  DF_WEIGHT,
-  DF_WRAP,
-  DF_FONT_OBJECT,
-} from "../types/font";
+
+import { DF_FONT_OBJECT } from "../types/font.type";
+import { DF_FONT_VARIANTS, TP_FONT_VARIANTS } from "../types/default-values";
+
+const defaultVariants: TP_FONT_VARIANTS = {
+  size: "16",
+};
 
 export const headingVariants = cva("flex flex-col mx-auto w-full", {
-  variants: {
-    size: DF_SIZE,
-    weight: DF_WEIGHT,
-    spacing: DF_SPACING,
-    wrap: DF_WRAP,
-    align: DF_ALIGN,
-    decoration: DF_DECORATION,
-    transform: DF_TRANSFORM,
-    overflow: DF_OVERFLOW,
-  },
-  defaultVariants: {},
+  variants: DF_FONT_VARIANTS,
+  defaultVariants,
 });
 
 type HeadingVariants = VariantProps<typeof headingVariants>;

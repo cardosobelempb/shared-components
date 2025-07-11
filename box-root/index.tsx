@@ -2,29 +2,39 @@ import clsx from "clsx";
 import type { ElementType } from "react";
 import React from "react";
 import { BoxRootProps, boxVariants } from "./box.type";
-import { computeFlexClasses } from "../types/flex";
-import { computeHClasses } from "../types/height";
-import { computeWClasses } from "../types/width";
+import { computeFlexClasses } from "../types/flex.type";
+import { computeHClasses } from "../types/height.type";
+import { computeWClasses } from "../types/width.type";
+import { computeVariantClasses } from "../types/variant.type";
 
 export default function BoxRoot<T extends ElementType>({
   as = "div",
   className,
   children,
-  flex,
+  dfflex,
   round,
-  h,
-  w,
+  dfheight,
+  dfwidth,
+  dfvariant,
   ...props
 }: BoxRootProps<T>) {
   const baseClasses = boxVariants({ round });
-  const flexClasses = computeFlexClasses(flex);
-  const hClasses = computeHClasses(h);
-  const wClasses = computeWClasses(w);
+  const flexClasses = computeFlexClasses(dfflex);
+  const hClasses = computeHClasses(dfheight);
+  const wClasses = computeWClasses(dfwidth);
+  const variantClasses = computeVariantClasses(dfvariant);
 
   return React.createElement(
     as,
     {
-      className: clsx(baseClasses, flexClasses, hClasses, wClasses, className),
+      className: clsx(
+        baseClasses,
+        flexClasses,
+        hClasses,
+        wClasses,
+        variantClasses,
+        className
+      ),
       ...props,
     },
     children

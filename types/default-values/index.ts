@@ -1,0 +1,17 @@
+import { DF_FONT_VARIANTS, TP_FONT_VARIANTS } from "./font.value";
+import { DF_MARGIN_VARIANTS, TP_MARGIN_VARIANTS } from "./margin.value";
+import { DF_PADDING_VARIANTS, TP_PADDING_VARIANTS } from "./padding.value";
+import { DF_FLEX_VARIANTS, TP_FLEX_VARIANTS } from "./flex.value";
+
+export {
+  DF_FONT_VARIANTS,
+  DF_MARGIN_VARIANTS,
+  DF_PADDING_VARIANTS,
+  DF_FLEX_VARIANTS,
+};
+export type {
+  TP_FONT_VARIANTS,
+  TP_MARGIN_VARIANTS,
+  TP_PADDING_VARIANTS,
+  TP_FLEX_VARIANTS,
+};

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import type { ElementType } from "react";
 import React from "react";
 import { HeadingRootProps, headingVariants } from "./heading.type";
-import { computeFontClasses } from "../types/font";
+import { computeFontClasses } from "../types/font.type";
 
 export default function HeadingRoot<T extends ElementType>({
   as = "h1",
